@@ -3,10 +3,6 @@
     = f.label :file, :class => 'control-label'
     .controls
       = f.file_field :file, :class => 'text_field'
-  .control-group
-    = f.label :creator_id, :class => 'control-label'
-    .controls
-      = f.text_field :creator_id, :class => 'text_field'
   = f.submit nil, :class => 'btn btn-primary'
   '
   = link_to t('.cancel', :default => t("helpers.links.cancel")), sleds_path, :class => 'btn'

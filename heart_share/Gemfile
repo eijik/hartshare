@@ -43,7 +43,7 @@ end
 gem 'twitter-bootstrap3-rails'
 gem 'carrierwave'
 gem 'slim-rails'
-
+gem 'less-rails'
 
 
 
