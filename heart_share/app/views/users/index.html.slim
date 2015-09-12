@@ -6,7 +6,6 @@ table class="table table-striped"
     tr
       th= model_class.human_attribute_name(:id)
       th= model_class.human_attribute_name(:name)
-      th= model_class.human_attribute_name(:image)
       th= model_class.human_attribute_name(:home_id)
       th= model_class.human_attribute_name(:group_id)
       th= model_class.human_attribute_name(:created_at)
@@ -16,7 +15,6 @@ table class="table table-striped"
       tr
         td= link_to user.id, user_path(user)
         td= user.name
-        td= user.image
         td= user.home_id
         td= user.group_id
         td=l user.created_at
