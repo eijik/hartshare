@@ -1,0 +1,16 @@
+= form_for @sled, :html => { :class => "form-horizontal" } do |f|
+  .control-group
+    = f.label :file, :class => 'control-label'
+    /= text_field_tag :key_bind_map 
+    .controls
+      = f.file_field :file, :class => 'text_field', accept: "image/*", capture: "camera" 
+  = f.submit nil, :class => 'btn btn-primary'
+  '
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), sleds_path, :class => 'btn'
+
+:coffee
+  $(document).keydown((e)->
+    if e.which == 66
+      alert('down key B!!!')
+    e.preventDefault()
+  });
