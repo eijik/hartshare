@@ -73,6 +73,6 @@ class SledsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def sled_params
-      params.require(:sled).permit(:file)
+      params.require(:sled).permit(:file, :comment)
     end
 end
