@@ -3,7 +3,7 @@ class SledsController < ApplicationController
 
   # GET /sleds
   def index
-    @sleds = Sled.all
+    @sleds = Sled.all.order(created_at: :desc)
   end
 
   # GET /sleds/1
