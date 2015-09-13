@@ -32,6 +32,7 @@ class SledsController < ApplicationController
   # POST /sleds
   def create
     @sled = Sled.new(sled_params)
+    @sled.creator = User.first
 
     if @sled.save
       redirect_to @sled, notice: 'Sled was successfully created.'
@@ -63,6 +64,6 @@ class SledsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def sled_params
-      params[:sled]
+      params.require(:sled).permit(:file)
     end
 end
