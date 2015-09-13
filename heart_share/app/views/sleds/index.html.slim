@@ -2,5 +2,29 @@ div class="row"
   - @sleds.each do |sled|
     div class="col-xs-6 col-md-3"
       div class="thumbnail"
-        img src=sled.file class="img-responsive"
+        div class="panel panel-primary"
+          div class="panel-heading"
+
+            - if sled.sled_groups.length == 1 && sled.sled_groups.exists?(group_id:sled.creator.home_id)
+                span class="label label-success" 家族向け
+            - else
+                span class="label label-danger" 全体向け
+            h4
+              = sled.creator.name + " さんが投稿しました"
+
+          div class="panel-body"
+            div style="position:relative"
+              img src=sled.creator.image class="sled_avator"
+              a href=sled_path(sled)
+                img src=sled.file class="img-responsive" style="width:100%"
+
+            div class="pull-right"
+              small
+                = sled.created_at.strftime('%Y年%m月%d日 %H時%M分%S秒') + " に投稿されました"
+
+            div class="clearfix"
+
+          div
+            p コメントなし
+  
 

@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+.avator {
+  max-width:10%;
+  height:auto;
+}
+
+.thumbnail {
+  border:none;
+}
+
+.sled_avator {
+  border: solid 1px #fff;
+  position:absolute;
+  max-width:30%;
+  height:auto;
+  right:0
+}
