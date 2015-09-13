@@ -135,6 +135,17 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+    links:
+      list: 一覧
+      actions: アクション
+      create: 作成
+      new: 作成
+      cancel: キャンセル
+      edit: 編集
+      update: 更新
+      destroy: 削除
+      back: 戻る
+    actions: アクション
   number:
     currency:
       format:
