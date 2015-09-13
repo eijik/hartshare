@@ -1,21 +1,58 @@
-= form_for @sled, :html => { :class => "form-horizontal" } do |f|
-  .control-group
-    /= f.label :file, :class => 'control-label'
-    = text_field_tag :key_bind_map 
-    = f.file_field :file, :class => 'text_field', accept: "image/*", capture: "camera" 
-    img src=@sled.file
-  = f.submit nil, :class => 'btn btn-primary'
-  '
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), sleds_path, :class => 'btn'
+.panel.panel-primary
+  .panel-heading
+    -if @sled.creator
+      h4 class="pull-left" = @sled.creator.name + " さんの投稿内容です"
+      img class="pull-right" src=@sled.creator.image class="avator"
+
+    div class="clearfix"
+
+  .panel-body
+    = form_for @sled, :html => { :class => "form-horizontal" } do |f|
+      .control-group.mb10
+        /= f.label :file, :class => 'control-label'
+        = text_field_tag :key_bind_map 
+        = f.file_field :file, :class => 'fileupload', accept: "image/*", capture: "camera" 
+        div style="text-align:center"
+          img src= @sled.file class="img-responsive"
+          img width='100%' height='100%' src= image_path('send_pic.jpg')
+        = f.submit nil, :class => 'btn btn-primary fileup_to_submit hidden'
+
+      /hr
+      /br
+
+      - if @sled.id
+        '
+        .fl= link_to 'もう一度', 'javascript:void(0);', class: 'reup btn btn-default', style:'font-size:36pt' 
+        '
+        .fr= link_to '　OK!　', complete_sled_path(@sled), class: 'btn btn-default', style:'font-size:36pt' 
+        .clear
+        br
+      br 
+       = link_to 'もどる', sleds_path, :class => 'btn btn-default', style:'font-size:26pt'
+
+    .pull-right
+      small
+        - if @sled.created_at
+          = @sled.created_at.strftime('%Y年%m月%d日 %H時%M分%S秒') + " に投稿されました"
+
+
+
+    .clearfix
 
 coffee:
   $('#key_bind_map').focus()
+  $('.reup').click (e)->
+    $('#sled_file').click();
+    
   $(document).keydown (e)->
     if e.which == 66
       # alert('down key B!!!')
       $('#sled_file').click();
       e.preventDefault()
 
-  @delegate 'change', 'input.fileupload',    @fileUpload
-  fileUpload = (e)-> 
-    alert 'asdf'
+  $('input.fileupload').change(->
+    # alert 'okokok upload'
+    $('.fileup_to_submit').click()
+  )
+
+
