@@ -1,4 +1,5 @@
-a href=new_sled_path class="btn btn-default" style="font-size:26pt" 写真撮影へ戻る
+a href=new_sled_path class="btn btn-default pull-right" style="font-size:26pt" 写真撮影へ
+div class="clearfix"
 
 hr
 
@@ -23,15 +24,19 @@ div class="row"
                 img src=sled.file class="img-responsive" style="width:100%"
 
             div class="pull-right"
-              small
-                = sled.created_at.strftime('%Y年%m月%d日 %H時%M分%S秒') + " に投稿されました"
+              = sled.created_at.strftime('%Y年%m月%d日 %H時%M分%S秒') + " に投稿されました"
 
             div class="clearfix"
 
-          div
-            p コメントなし
-  
+            hr
+
+            div
+              - if sled.comment.present?
+                p = sled.comment
+              - else
+                p コメントなし
+
 hr
 
-a href=new_sled_path class="btn btn-default" style="font-size:26pt" 写真撮影へ戻る
+a href=new_sled_path class="btn btn-default pull-right" style="font-size:26pt" 写真撮影へ
 

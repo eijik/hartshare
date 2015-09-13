@@ -1,6 +1,36 @@
-- model_class = Sled
-div class="page-header"
-  /h1=t '.title', :default => [:'helpers.titles.edit', 'Comp %{model}'], :model => model_class.model_name.human.titleize
-  img src=@sled.file
+h1 class="text-center" style="font-size:40pt" = @title + "に写真をおくりました。"
 
-= link_to t('.list', :default => t("helpers.links.list")), sleds_path, :class => 'btn btn-default'
+hr
+
+div class="panel panel-primary"
+  div class="panel-heading"
+    - if @sled.sled_groups.length == 1 && @sled.sled_groups.exists?(group_id:@sled.creator.home_id)
+        span class="label label-success" 家族向け
+    - else
+        span class="label label-danger" 全体向け
+
+    br
+
+    h4 class="pull-left" = @sled.creator.name + " さんの投稿内容です"
+    img class="pull-right" src=@sled.creator.image class="avator"
+
+    div class="clearfix"
+  
+  div class="panel-body"
+
+    div style="text-align:center"
+      img src=@sled.file class="img-responsive"
+
+    div class="pull-right"
+      small
+        = @sled.created_at.strftime('%Y年%m月%d日 %H時%M分%S秒') + " に投稿されました"
+
+    div class="clearfix"
+
+    div
+      p コメントなし
+
+hr
+
+= link_to "思い出をみる", sleds_path, :class => 'btn btn-default pull-right', style:"font-size:26pt"
+
