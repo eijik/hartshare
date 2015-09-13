@@ -1,5 +1,5 @@
 class SledsController < ApplicationController
-  before_action :set_sled, only: [:show, :edit, :update, :destroy]
+  before_action :set_sled, only: [:show, :edit, :update, :destroy, :complete]
 
   # GET /sleds
   def index
@@ -13,6 +13,16 @@ class SledsController < ApplicationController
   # GET /sleds/new
   def new
     @sled = Sled.new
+  end
+
+  # GET /sleds/1/complete
+  # @params
+  #   group_id:
+  #     あり: 全体sleadsの最新１件を表示
+  #     なし: 家族(group_idで絞込)の最新１件表示
+  def complete
+    sleds = params[:group_id].present? ? Sled.where(group_id:params[:id]) : Sled.all
+    @sled = sleds.order(created_at: :asc).first
   end
 
   # GET /sleds/1/edit

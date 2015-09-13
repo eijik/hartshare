@@ -1,0 +1,26 @@
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+<h1>asdf</h1>
+<input type='text'>
+<script>
+  (function(){
+    $(document).keydown(function(e) {
+        switch(e.which) {
+            case 66: // left
+              alert('down key B!!!');
+            break;
+
+            case 38: // up
+            break;
+
+            case 39: // right
+            break;
+
+            case 40: // down
+            break;
+
+            default: return; // exit this handler for other keys
+        }
+        e.preventDefault(); // prevent the default action (scroll / move caret)
+    });
+  })();
+</script>
