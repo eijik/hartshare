@@ -1,6 +1,11 @@
-- model_class = Sled
-div class="page-header"
-  /h1=t '.title', :default => [:'helpers.titles.edit', 'Comp %{model}'], :model => model_class.model_name.human.titleize
-  img src=@sled.file
+h1 class="text-center" style="font-size:40pt" = @title + "に写真をおくりました。"
 
-= link_to t('.list', :default => t("helpers.links.list")), sleds_path, :class => 'btn btn-default'
+hr
+
+div style="text-align:center"
+  img src=@sled.file class="img-responsive"
+
+hr
+
+= link_to "思い出をみる", sleds_path, :class => 'btn btn-default pull-right', style:"font-size:26pt"
+

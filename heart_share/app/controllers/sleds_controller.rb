@@ -18,11 +18,18 @@ class SledsController < ApplicationController
   # GET /sleds/1/complete
   # @params
   #   group_id:
-  #     あり: 全体sleadsの最新１件を表示
-  #     なし: 家族(group_idで絞込)の最新１件表示
+  #     なし: 全体sleadsの最新１件を表示
+  #     あり: 家族(group_idで絞込)の最新１件表示
   def complete
-    sleds = params[:group_id].present? ? Sled.where(group_id:params[:id]) : Sled.all
-    @sled = sleds.order(created_at: :asc).first
+    if params[:group_id].present?
+       # 家族(group_id)があるときは、グループの中で最新のレコードを１件取得する
+      @sled = Sled.joins(:sled_groups).where(sled_groups:{group_id:params[:group_id]}).order("sleds.created_at asc").first
+      @title = "家族"
+    else
+       # 家族(group_id)がないときは、全体の中で最新のレコードを１件取得する
+      @sled = Sled.all.order(created_at: :asc).first
+      @title = "近所"
+    end
   end
 
   # GET /sleds/1/edit
@@ -32,6 +39,8 @@ class SledsController < ApplicationController
   # POST /sleds
   def create
     @sled = Sled.new(sled_params)
+
+     # 以下、仮コード
     @sled.creator = User.first
 
     if @sled.save
