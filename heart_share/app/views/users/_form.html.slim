@@ -10,11 +10,7 @@
   .control-group
     = f.label :home_id, :class => 'control-label'
     .controls
-      = f.text_field :home_id, :class => 'text_field'
-  .control-group
-    = f.label :group_id, :class => 'control-label'
-    .controls
-      = f.text_field :group_id, :class => 'text_field'
+      = f.select :home_id, Group.all.map{|g| [g.name, g.id] }, {}, class:"form-control"
   = f.submit nil, :class => 'btn btn-primary'
   '
   = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'

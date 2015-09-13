@@ -205,3 +205,9 @@ ja:
       short: "%y/%m/%d %H:%M"
     pm: 午後
 
+  activerecord:
+    attributes:
+      user:
+        name: "名前"
+        image: "顔写真"
+        home_id: "家族"
