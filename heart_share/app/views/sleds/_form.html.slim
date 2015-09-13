@@ -16,3 +16,6 @@ coffee:
       $('#sled_file').click();
       e.preventDefault()
 
+  @delegate 'change', 'input.fileupload',    @fileUpload
+  fileUpload = (e)-> 
+    alert 'asdf'
